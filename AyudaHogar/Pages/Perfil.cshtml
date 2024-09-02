@@ -1,0 +1,41 @@
+﻿@page
+@model AyudaHogar.Pages.PerfilModel
+
+@{
+    ViewData["Title"] = "Perfil de Usuario";
+}
+
+<div class="profile-header" style="background-image: url('/img/Wallpaper web.jpg');">
+    <div class="container text-white py-5 text-center">
+        <img src="/img/avatar-svgrepo-com.svg" class="rounded-circle mb-3" alt="Avatar" style="width: 150px; height: 150px;">
+        <h2>@Model.Usuario.UsuNom @Model.Usuario.UsuApe</h2>
+        <p>@Model.NombreRol</p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Información de Contacto</h5>
+                    <p class="card-text"><strong>Correo Electrónico:</strong> @Model.Usuario.UsuMail</p>
+                    <div class="text-center mt-4">
+                        @if (Model.Usuario.UsuRol == "1")
+                        {
+                            <a href="@Url.Page("./SolicitarProveedor")" class="btn btn-primary">Solicitar ser proveedor de servicio</a>
+                            <a href="@Url.Page("./MostrarMisSolicitudes", new { id = Model.Usuario.UsuId })" class="btn btn-secondary ml-2">Ver mis solicitudes</a>
+                        }
+                        else if (Model.EsProveedor && !Model.EsProveedorPromocionado)
+                        {
+                            <a href="@Url.Page("./SolicitarSerPremium")" class="btn btn-primary">Solicitar ser un proveedor promocionado</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Incluir Bootstrap Icons para usar iconos -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">

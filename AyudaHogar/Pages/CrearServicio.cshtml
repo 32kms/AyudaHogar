@@ -1,0 +1,51 @@
+﻿@page
+@model AyudaHogar.Pages.Servicios.CrearServicioModel
+
+<div class="container mt-4">
+    <h2 class="mb-3">Crear Nuevo Servicio</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label for="categoriaSelect" class="form-label">Categoría</label>
+            <select id="categoriaSelect" class="form-select" required asp-for="Servicio.CatId" asp-items="Model.Categorias"></select>
+        </div>
+        <div class="mb-3">
+            <label for="regionSelect" class="form-label">Región</label>
+            <select id="regionSelect" class="form-select" asp-for="SelectedRegionId" asp-items="Model.Regiones">
+                <option value="">Seleccione una región</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="comunaSelect" class="form-label">Comuna</label>
+            <select id="comunaSelect" class="form-select" asp-for="Servicio.ComunaId">
+                <option value="">Seleccione una comuna</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="servicioDetalle" class="form-label">Descripción del Servicio</label>
+            <input id="servicioDetalle" class="form-control" required asp-for="Servicio.ServDetalle" />
+        </div>
+        <!-- Aquí iría la lógica para agregar bloques de tiempo -->
+        <button type="submit" class="btn btn-primary">Crear Servicio</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Script para cargar comunas basado en la región seleccionada
+        $('#regionSelect').change(function () {
+            var regionId = $(this).val();
+            $('#comunaSelect').empty().append($('<option>', {
+                value: "",
+                text: "Seleccione una comuna"
+            }));
+            $.getJSON('?handler=Comunas&regionId=' + regionId, function (data) {
+                $.each(data, function (i, item) {
+                    $('#comunaSelect').append($('<option>', {
+                        value: item.comunaId,
+                        text: item.comunaNombre
+                    }));
+                });
+            });
+        });
+    </script>
+}

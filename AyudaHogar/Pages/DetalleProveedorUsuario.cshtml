@@ -1,0 +1,42 @@
+﻿@page
+@model AyudaHogar.Pages.DetalleProveedorUsuarioModel
+
+@{
+    ViewData["Title"] = "Detalle del Proveedor";
+}
+
+<div class="profile-header" style="background-image: url('/img/Wallpaper web.jpg');">
+    <div class="container text-white py-5 text-center">
+        <!-- Usar la foto de perfil del proveedor -->
+        <img src="@Model.FotoPerfilUrl" class="rounded-circle mb-3" alt="Foto de Perfil" style="width: 150px; height: 150px;">
+        <h2>@Model.Proveedordeservicio.ProvNom</h2>
+        <!-- Puedes agregar más información del proveedor aquí si es necesario -->
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Información de Contacto</h5>
+                    <!-- Número de teléfono -->
+                    <p class="card-text"><strong>Número de teléfono:</strong> @Model.Proveedordeservicio.ProvPhone</p>
+                </div>
+            </div>
+            <h2 class="mt-4">Servicios Ofrecidos</h2>
+            @foreach (var servicio in Model.Servicios)
+            {
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h3 class="card-title">@servicio.ServDetalle</h3>
+                        <p class="card-text">Categoría: @servicio.Cat?.CatNom</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Incluir Bootstrap Icons para usar iconos -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">

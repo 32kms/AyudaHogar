@@ -1,0 +1,13 @@
+﻿@model IList<AyudaHogar.Models.Categoriadeservicio>
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Categorías de Servicio
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        @foreach (var categoria in Model)
+        {
+            <li><a class="dropdown-item" href="/Servicios?categoriaId=@categoria.CatId">@categoria.CatNom</a></li>
+        }
+    </ul>
+</li>

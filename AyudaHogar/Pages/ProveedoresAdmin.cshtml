@@ -1,0 +1,62 @@
+﻿@page
+@model AyudaHogar.Pages.ProveedoresAdminModel
+
+@{
+    ViewData["Title"] = "ProveedoresAdmin";
+}
+
+<h1 class="mb-4">Proveedores de servicio</h1>
+
+<style>
+    .accordion-body {
+        max-height: 50vh; /* Ajusta este valor según necesites */
+        overflow-y: auto;
+    }
+</style>
+
+<div class="accordion" id="accordionProveedores">
+    @foreach (var categoria in new[] { "Premium", "Bloqueados", "Normales" })
+    {
+        var categoriaId = $"collapse{categoria}";
+        var proveedores = Model.GetType().GetProperty($"Proveedores{categoria}").GetValue(Model, null) as IList<AyudaHogar.Models.Proveedordeservicio>;
+        var cantidadProveedores = proveedores?.Count ?? 0;
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading@categoria">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@categoriaId" aria-expanded="false" aria-controls="@categoriaId">
+                    Proveedores @categoria (@cantidadProveedores)
+                </button>
+            </h2>
+            <div id="@categoriaId" class="accordion-collapse collapse" aria-labelledby="heading@categoria" data-bs-parent="#accordionProveedores">
+                <div class="accordion-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Nombre del Proveedor</th>
+                                    <th>Nombre de Usuario</th>
+                                    <th>Apellido</th>
+                                    <th>Correo Electrónico</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in proveedores)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.ProvNom)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Usu.UsuNom)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Usu.UsuApe)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Usu.UsuMail)</td>
+                                        <td>
+                                            <a asp-page="./Details" asp-route-id="@item.ProvId" class="btn btn-primary btn-sm">Detalles</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

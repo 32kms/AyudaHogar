@@ -1,0 +1,34 @@
+﻿@page
+@model AyudaHogar.Pages.SolicitudesPremiumModel
+
+@{
+    ViewData["Title"] = "Solicitudes Premium";
+}
+
+<h1 class="mb-3">Solicitudes para ser Premium</h1>
+
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Descripción de la Solicitud</th>
+            <th>Plan Premium Seleccionado</th>
+            <th>Nombre del Proveedor de Servicio</th>
+            <th>Estado de la Solicitud</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Solicitudpremium)
+        {
+            <tr>
+                <td>@item.SpDescripcion</td>
+                <td>@(item.Pp?.PpDescripcion ?? "No especificado")</td>
+                <td>@(item.Prov?.ProvNom ?? "No especificado")</td>
+                <td>@(item.Spe?.SpeDescripcion ?? "No especificado")</td>
+                <td>
+                    <a asp-page="./DetalleSolicitudPremium" asp-route-id="@item.SpId" class="btn btn-info">Detalles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

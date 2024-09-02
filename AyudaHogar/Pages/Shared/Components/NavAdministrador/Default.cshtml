@@ -1,0 +1,13 @@
+﻿@model List<(string Titulo, string Url)>
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        Administrar
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        @foreach (var enlace in Model)
+        {
+            <li><a class="dropdown-item" href="@enlace.Url">@enlace.Titulo</a></li>
+        }
+    </ul>
+</div>

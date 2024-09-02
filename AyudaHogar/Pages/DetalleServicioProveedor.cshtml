@@ -1,0 +1,78 @@
+﻿@page
+@model AyudaHogar.Pages.DetalleServicioProveedorModel
+
+@{
+    ViewData["Title"] = "Detalle del Servicio";
+}
+
+<div class="container mt-4">
+    <h1 class="">Detalle del Servicio</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Información del Servicio</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Detalle
+                </dt>
+                <dd class="col-sm-10">
+                    @Model.Servicio.ServDetalle
+                </dd>
+                <dt class="col-sm-2">
+                    Categoría
+                </dt>
+                <dd class="col-sm-10">
+                    @Model.Servicio.Cat?.CatNom
+                </dd>
+                <dt class="col-sm-2">
+                    Comuna
+                </dt>
+                <dd class="col-sm-10">
+                    @Model.Servicio.Comuna?.ComunaNombre
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a asp-page="./VerBloquesdeTiempoProveedor" asp-route-id="@Model.Servicio.ServId" class="btn btn-primary">Ver Disponibilidad</a>
+        <a asp-page="/EditarMiServicio" asp-route-id="@Model.Servicio.ServId" class="btn btn-secondary">Editar Servicio</a>
+        <a href="javascript:void(0)" onclick="confirmarEliminacion(@Model.Servicio.ServId)" class="btn btn-danger">Eliminar Servicio</a>
+    </div>
+
+    <div class="mt-3">
+        <a asp-page="./MisServiciosProveedor" class="btn btn-light">Volver a la lista</a>
+    </div>
+
+    @if (Model.Comentarios.Any())
+    {
+        <div class="mt-4">
+            <h3>Comentarios</h3>
+            @foreach (var comentario in Model.Comentarios)
+            {
+                <div class="alert alert-secondary">
+                    <p>@comentario.ComDetalle</p>
+                    <p>Puntuación: @comentario.ComPuntuacion</p>
+                </div>
+            }
+            <p>Promedio de Puntuación: @Model.PromedioPuntuacion</p>
+        </div>
+    }
+    else
+    {
+        <p class="alert alert-warning mt-4">Este servicio no tiene comentarios.</p>
+    }
+
+
+@section Scripts {
+    <script>
+        function confirmarEliminacion(servId) {
+            if (confirm("¿Está seguro que desea eliminar este servicio?")) {
+                // Redirige al método OnPostEliminarAsync en el modelo de la página con el ID del servicio
+                window.location.href = '?handler=Eliminar&servId=' + servId;
+            }
+        }
+    </script>
+}
+</div>

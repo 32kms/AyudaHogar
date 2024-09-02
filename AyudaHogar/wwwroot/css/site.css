@@ -1,0 +1,123 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.bloque-tiempo {
+    background-color: #007bff;
+    color: white;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.nav-background-color {
+    background-color: #3c2c6c !important;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.columna-central {
+    background-color: #f0f0f0;
+}
+
+.espacio-entre-anuncios {
+    height: 75px;
+}
+
+.anuncio {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 250px;
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    margin: 5px;
+    border: 1px solid #000;
+}
+
+    .anuncio .button {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        z-index: 20;
+    }
+
+        .anuncio .button img,
+        .anuncio .img-fluid {
+            width: 39px;
+            height: auto;
+            background: none;
+        }
+
+    .anuncio .img-fluid {
+        width: 100%;
+        height: 157px;
+        display: block;
+        border: 0;
+        position: absolute;
+        background: #4D90FE;
+    }
+
+    .anuncio .tituloCurto {
+        background: rgb(83, 83, 83);
+        height: 41px;
+        color: #fff;
+        line-height: 41px;
+        font-family: Roboto, Arial;
+        font-weight: bold;
+        font-size: 24px;
+        padding-left: 7px;
+        position: absolute;
+        margin-top: 157px;
+        width: 100%; /* Asegura que el título se extienda a lo ancho del anuncio */
+    }
+
+    .anuncio .anuncio-footer {
+        margin-top: auto;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 2px 5px;
+    }
+
+        .anuncio .anuncio-footer .desc,
+        .anuncio .anuncio-footer .link.empresa {
+            display: block;
+            color: #000;
+            font-size: 11px;
+            padding: 1px 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-right: 50px;
+        }
+
+@media (max-width: 768px) {
+    .anuncio {
+        min-height: auto; /* Permite que el anuncio se ajuste al contenido */
+    }
+
+        .anuncio .tituloCurto {
+            margin-top: auto; /* Coloca el título encima del footer en pantallas pequeñas */
+            width: auto; /* Permite que el título se ajuste al contenido */
+        }
+}

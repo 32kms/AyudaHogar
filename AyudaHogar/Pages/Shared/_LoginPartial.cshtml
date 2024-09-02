@@ -1,0 +1,44 @@
+﻿@using System.Security.Claims
+@using System.Security.Principal
+
+<ul class="navbar-nav navbar-dark">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle fs-4"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                @if (User is ClaimsPrincipal principal)
+                {
+                    var roleClaim = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+                    if (roleClaim != null)
+                    {
+                        string roleName = roleClaim.Value switch
+                        {
+                            "1" => "Usuario",
+                            "2" => "Proveedor",
+                            "3" => "Admin",
+                            _ => "Rol Desconocido"
+                        };
+                        <li><span class="dropdown-item-text">@User.Identity?.Name (@roleName)</span></li>
+                        <li><hr class="dropdown-divider"></li>
+                        if (roleClaim.Value == "1" || roleClaim.Value == "2")
+                        {
+                            <li><a class="dropdown-item" asp-page="/MisReportes">Mis Reportes</a></li>
+                            <li><a class="dropdown-item" asp-page="/SolicitarCategoria">Solicitar nueva categoria</a></li>
+                        }
+                    }
+                }
+                <li><a class="dropdown-item" asp-page="/Perfil">Ver Perfil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut"><i class="bi bi-box-arrow-left"> Cerrar sesión</i></a></li>
+            }
+            else
+            {
+                <li><a class="dropdown-item" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn"><i class="bi bi-box-arrow-in-right"> Iniciar sesión</i></a></li>
+            }
+        </ul>
+    </li>
+</ul>
+

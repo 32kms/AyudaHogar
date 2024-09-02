@@ -1,0 +1,52 @@
+﻿@page
+@model AyudaHogar.Pages.DetalleSolicitudPremiumModel
+
+@{
+    ViewData["Title"] = "Detalle de Solicitud Premium";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Detalle de Solicitud Premium</h1>
+        <form method="post" asp-page-handler="CrearSuscripcion">
+            <input type="hidden" name="id" value="@Model.Solicitudpremium.SpId" />
+            <button type="submit" class="btn btn-success">Aprobar y crear suscripción premium</button>
+        </form>
+    </div>
+
+    <div class="mt-4">
+        <h2>Información de la Solicitud</h2>
+        <p><strong>Número de Solicitud:</strong> @Model.Solicitudpremium.SpId</p>
+        <p><strong>Descripción:</strong> @Model.Solicitudpremium.SpDescripcion</p>
+    </div>
+
+    <div class="mt-4">
+        <h2>Información del Proveedor de Servicio</h2>
+        <p><strong>Nombre de la Empresa:</strong> @Model.Solicitudpremium.Prov?.ProvNom</p>
+        <p><strong>Teléfono:</strong> @Model.Solicitudpremium.Prov?.ProvPhone</p>
+        <p><strong>RUT:</strong> @Model.Solicitudpremium.Prov?.ProvRut</p>
+    </div>
+
+    <div class="mt-4">
+        <h2>Información del Usuario</h2>
+        <p><strong>Nombre:</strong> @Model.Solicitudpremium.Prov?.Usu?.UsuNom @Model.Solicitudpremium.Prov?.Usu?.UsuApe</p>
+        <p><strong>Email:</strong> @Model.Solicitudpremium.Prov?.Usu?.UsuMail</p>
+    </div>
+
+    <form method="post" class="mb-3">
+        <div class="mb-3">
+            <label for="estadoSolicitud" class="form-label">Estado de la Solicitud</label>
+            <select class="form-select" id="estadoSolicitud" name="NuevoEstadoId">
+                @foreach (var estado in Model.EstadosSolicitud)
+                {
+                    <option value="@estado.SpeId">@estado.SpeDescripcion</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar Estado</button>
+    </form>
+
+    <div class="mt-4">
+        <a asp-page="./SolicitudesPremium" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+</div>

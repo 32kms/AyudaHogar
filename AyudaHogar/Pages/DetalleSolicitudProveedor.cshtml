@@ -1,0 +1,71 @@
+﻿@page
+@model AyudaHogar.Pages.DetalleSolicitudProveedorModel
+@{
+    ViewData["Title"] = "Detalle de la Solicitud de Proveedor";
+}
+
+<h1 class="text-center mb-5">Detalle de la Solicitud para ser Proveedor</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Foto de perfil con estilo de Bootstrap -->
+            <img src="@Model.ProveedorDeServicio.ProvFotoPerfilUrl" class="img-thumbnail mb-3" alt="Foto de Perfil" />
+            <h5>@Model.ProveedorDeServicio.ProvNom</h5>
+            <p><i class="bi bi-telephone-fill"></i> @Model.ProveedorDeServicio.ProvPhone</p>
+            <p><i class="bi bi-file-earmark-text"></i> @Model.ProveedorDeServicio.ProvRut</p>
+        </div>
+        <div class="col-md-8">
+            <h4>Información de la Solicitud</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">Descripción</dt>
+                <dd class="col-sm-9">@Model.Solicitudproveedordeservicio.SpsDescripcion</dd>
+
+                <dt class="col-sm-3">Estado</dt>
+                <dd class="col-sm-9">@Model.Solicitudproveedordeservicio.Esp.EspDescripcion</dd>
+
+                <dt class="col-sm-3">Usuario</dt>
+                <dd class="col-sm-9">@Model.Solicitudproveedordeservicio.Usu.UsuNom @Model.Solicitudproveedordeservicio.Usu.UsuApe</dd>
+
+                <dt class="col-sm-3">Correo</dt>
+                <dd class="col-sm-9">@Model.Solicitudproveedordeservicio.Usu.UsuMail</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="accordion" id="accordionFotoCarnet">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFotoCarnet">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFotoCarnet" aria-expanded="false" aria-controls="collapseFotoCarnet">
+                    Foto de Identificación
+                </button>
+            </h2>
+            <div id="collapseFotoCarnet" class="accordion-collapse collapse" aria-labelledby="headingFotoCarnet">
+                <div class="accordion-body">
+                    <!-- Aquí va la imagen de carnet de identidad -->
+                    <img src="@Model.ProveedorDeServicio.ProvFotoCarnet" class="img-fluid" alt="Foto de Carnet" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <!-- Dropdown para cambiar el estado de la solicitud -->
+            <form method="post">
+                <input type="hidden" name="id" value="@Model.Solicitudproveedordeservicio.SpsId" />
+                <div class="form-group">
+                    <label for="estadoSolicitud">Estado de la Solicitud</label>
+                    <select class="form-control" id="estadoSolicitud" name="EstadoSolicitud">
+                        <option value="1">Pendiente</option>
+                        <option value="2">Aceptado</option>
+                        <option value="3">Rechazado</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Actualizar Estado</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Estilo para el fondo con la foto de carnet -->

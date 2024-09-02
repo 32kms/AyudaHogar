@@ -1,0 +1,58 @@
+﻿@page
+@model AyudaHogar.Pages.MostrarMisSolicitudesModel
+
+@{
+    ViewData["Title"] = "Mostrar Mis Solicitudes";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Mis solicitudes para proveedor de servicio</h1>
+
+    @if (Model.Solicitudes != null && Model.Solicitudes.Count > 0)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var solicitud in Model.Solicitudes)
+                {
+                    <tr>
+                        <td>@solicitud.SpsDescripcion</td>
+                        <td>
+                            @{
+                                var estadoClase = "text-secondary";
+                                var estadoNombre = "No Especificado";
+                                switch (solicitud.Esp?.EspDescripcion.ToLower())
+                                {
+                                    case "pendiente":
+                                        estadoClase = "text-warning";
+                                        estadoNombre = "Pendiente";
+                                        break;
+                                    case "aceptado":
+                                        estadoClase = "text-success";
+                                        estadoNombre = "Aceptado";
+                                        break;
+                                    case "rechazado":
+                                        estadoClase = "text-danger";
+                                        estadoNombre = "Rechazado";
+                                        break;
+                                }
+                            }
+                            <span class="@estadoClase">@estadoNombre</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            No se encontraron solicitudes.
+        </div>
+    }
+</div>

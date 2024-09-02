@@ -1,0 +1,45 @@
+﻿@page
+@model AyudaHogar.Pages.SolicitarSerPremiumModel
+
+@{
+    ViewData["Title"] = "Solicitar Ser Premium";
+}
+
+<h1>Solicitar Ser Premium</h1>
+
+<h4>Solicitud Premium</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Solicitudpremium.ProvId" />
+            <input type="hidden" asp-for="Solicitudpremium.SpeId" value="1" /> <!-- Establecido a "Enviado" por defecto -->
+
+            <div class="form-group">
+                <label asp-for="Solicitudpremium.PpId" class="control-label">Plan Premium</label>
+                <select asp-for="Solicitudpremium.PpId" class="form-control" asp-items="ViewBag.PpId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Solicitudpremium.SpDescripcion" class="control-label">Descripción</label>
+                <textarea asp-for="Solicitudpremium.SpDescripcion" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Enviar Solicitud" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Volver a la Lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

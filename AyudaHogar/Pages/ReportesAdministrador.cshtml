@@ -1,0 +1,82 @@
+﻿@page
+@model AyudaHogar.Pages.ReportesAdministradorModel
+
+@{
+    ViewData["Title"] = "Reportes Administrador";
+}
+
+<h1>Reportes de servicios</h1>
+
+<div class="accordion" id="accordionReportes">
+    <!-- Reportes Enviados -->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingEnviados">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnviados" aria-expanded="false" aria-controls="collapseEnviados">
+                Reportes Enviados (@Model.ReportesEnviados.Count)
+            </button>
+        </h2>
+        <div id="collapseEnviados" class="accordion-collapse collapse" aria-labelledby="headingEnviados" data-bs-parent="#accordionReportes">
+            <div class="accordion-body">
+                @foreach (var item in Model.ReportesEnviados)
+                {
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.RepDescripcion)</h5>
+                            <p class="card-text">Estado: @Html.DisplayFor(modelItem => item.Er.ErNombre)</p>
+                            <p class="card-text">Usuario: @Html.DisplayFor(modelItem => item.Usu.UsuNom)</p>
+                            <a asp-page="./DetalleReporte" asp-route-id="@item.RepId" asp-route-servId="@item.Serv.ServId" class="btn btn-primary">Detalles</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Reportes en Proceso -->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingEnProceso">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnProceso" aria-expanded="false" aria-controls="collapseEnProceso">
+                Reportes en Proceso (@Model.ReportesEnProceso.Count)
+            </button>
+        </h2>
+        <div id="collapseEnProceso" class="accordion-collapse collapse" aria-labelledby="headingEnProceso" data-bs-parent="#accordionReportes">
+            <div class="accordion-body">
+                @foreach (var item in Model.ReportesEnProceso)
+                {
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.RepDescripcion)</h5>
+                            <p class="card-text">Estado: @Html.DisplayFor(modelItem => item.Er.ErNombre)</p>
+                            <p class="card-text">Usuario: @Html.DisplayFor(modelItem => item.Usu.UsuNom)</p>
+                            <a asp-page="./DetalleReporte" asp-route-id="@item.RepId" asp-route-servId="@item.Serv.ServId" class="btn btn-primary">Detalles</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Reportes Cerrados -->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingCerrados">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCerrados" aria-expanded="false" aria-controls="collapseCerrados">
+                Reportes Cerrados (@Model.ReportesCerrados.Count)
+            </button>
+        </h2>
+        <div id="collapseCerrados" class="accordion-collapse collapse" aria-labelledby="headingCerrados" data-bs-parent="#accordionReportes">
+            <div class="accordion-body">
+                @foreach (var item in Model.ReportesCerrados)
+                {
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.RepDescripcion)</h5>
+                            <p class="card-text">Estado: @Html.DisplayFor(modelItem => item.Er.ErNombre)</p>
+                            <p class="card-text">Usuario: @Html.DisplayFor(modelItem => item.Usu.UsuNom)</p>
+                            <a asp-page="./DetalleReporte" asp-route-id="@item.RepId" asp-route-servId="@item.Serv.ServId" class="btn btn-primary">Detalles</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

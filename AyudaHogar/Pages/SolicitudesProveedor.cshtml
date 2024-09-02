@@ -1,0 +1,112 @@
+﻿@page
+@model AyudaHogar.Pages.SolicitudesProveedorModel
+
+@{
+    ViewData["Title"] = "Administración de Solicitudes de Proveedor";
+}
+
+<h1>Administración de Solicitudes de Proveedor</h1>
+
+<div class="accordion" id="accordionSolicitudes">
+    <!-- Solicitudes Pendientes -->
+    @if (Model.SolicitudesPendientes.Any())
+    {
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPendientes">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePendientes" aria-expanded="true" aria-controls="collapsePendientes">
+                    Solicitudes Pendientes (@Model.SolicitudesPendientes.Count)
+                </button>
+            </h2>
+            <div id="collapsePendientes" class="accordion-collapse collapse show" aria-labelledby="headingPendientes">
+                <div class="accordion-body">
+                    @foreach (var item in Model.SolicitudesPendientes)
+                    {
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.SpsDescripcion)</h5>
+                                        <p class="card-text"><small class="text-muted">Usuario: @Html.DisplayFor(modelItem => item.Usu.UsuNom)</small></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 d-flex align-items-center">
+                                    <div class="card-body">
+                                        <a asp-page="./DetalleSolicitudProveedor" asp-route-id="@item.SpsId" class="btn btn-primary">Ver Detalles</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Solicitudes Aceptadas -->
+    @if (Model.SolicitudesAceptadas.Any())
+    {
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingAceptadas">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAceptadas" aria-expanded="false" aria-controls="collapseAceptadas">
+                    Solicitudes Aceptadas (@Model.SolicitudesAceptadas.Count)
+                </button>
+            </h2>
+            <div id="collapseAceptadas" class="accordion-collapse collapse" aria-labelledby="headingAceptadas">
+                <div class="accordion-body">
+                    @foreach (var item in Model.SolicitudesAceptadas)
+                    {
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.SpsDescripcion)</h5>
+                                        <p class="card-text"><small class="text-muted">Usuario: @Html.DisplayFor(modelItem => item.Usu.UsuNom)</small></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 d-flex align-items-center">
+                                    <div class="card-body">
+                                        <a asp-page="./DetalleSolicitudProveedor" asp-route-id="@item.SpsId" class="btn btn-primary">Ver Detalles</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Solicitudes Rechazadas -->
+    @if (Model.SolicitudesRechazadas.Any())
+    {
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingRechazadas">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRechazadas" aria-expanded="false" aria-controls="collapseRechazadas">
+                    Solicitudes Rechazadas (@Model.SolicitudesRechazadas.Count)
+                </button>
+            </h2>
+            <div id="collapseRechazadas" class="accordion-collapse collapse" aria-labelledby="headingRechazadas">
+                <div class="accordion-body">
+                    @foreach (var item in Model.SolicitudesRechazadas)
+                    {
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.SpsDescripcion)</h5>
+                                        <p class="card-text"><small class="text-muted">Usuario: @Html.DisplayFor(modelItem => item.Usu.UsuNom)</small></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 d-flex align-items-center">
+                                    <div class="card-body">
+                                        <a asp-page="./DetalleSolicitudProveedor" asp-route-id="@item.SpsId" class="btn btn-primary">Ver Detalles</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

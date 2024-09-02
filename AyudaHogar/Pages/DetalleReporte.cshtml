@@ -1,0 +1,44 @@
+﻿@page
+@model AyudaHogar.Pages.DetalleReporteModel
+
+@{
+    ViewData["Title"] = "Detalle del Reporte";
+}
+
+<h1>Detalle del Reporte</h1>
+
+@if (Model.Report.Serv != null)
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Servicio Reportado: @Model.Report.Serv.ServDetalle</h5>
+            @if (Model.Report.Serv.Prov != null)
+            {
+                <p class="card-text">Proveedor: @Model.Report.Serv.Prov.ProvNom</p>
+                <p class="card-text">Teléfono: @Model.Report.Serv.Prov.ProvPhone</p>
+            }
+            <a href="@Url.Page("/ServicioDetalle", new { id = Model.Report.ServId })" class="btn btn-primary">Ver Detalle del Servicio</a>
+        </div>
+    </div>
+}
+
+<div class="mt-4">
+    <form method="post" class="form-inline">
+        <input type="hidden" name="repId" value="@Model.Report.RepId" />
+        @if (Model.Report.Serv?.Prov != null)
+        {
+            <input type="hidden" name="provId" value="@Model.Report.Serv.Prov.ProvId" />
+        }
+        <div class="form-group mb-2">
+            <label for="nuevoEstado" class="mr-2">Nuevo Estado:</label>
+            <select name="nuevoEstado" id="nuevoEstado" class="form-control">
+                <option value="1">Rechazado</option>
+                <option value="2">En Proceso</option>
+                <option value="3">Aceptado</option>
+                <option value="4">Cerrado</option>
+            </select>
+        </div>
+        <button type="submit" asp-page-handler="BloquearProveedor" class="btn btn-danger ml-2 mb-2">Bloquear Proveedor de Servicio</button>
+        <button type="submit" asp-page-handler="CambiarEstado" class="btn btn-success ml-2 mb-2">Cambiar Estado</button>
+    </form>
+</div>

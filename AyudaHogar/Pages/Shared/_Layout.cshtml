@@ -1,0 +1,165 @@
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AyudaHogar</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AyudaHogar.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+
+
+</head>
+<body>
+    <div class="bg-light nav-background-color">
+        <div class="container">
+            <header>
+                <nav class="navbar navbar-expand-lg navbar-dark nav-background-color">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" asp-area="" asp-page="/Index">
+                            <img src="/img/Logo Multicolor SVG.svg" alt="AyudaHogar" width="30" height="24" class="d-inline-block align-text-top">
+                            AyudaHogar
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                @await Component.InvokeAsync("NavUsuario")
+                                @if (User.Identity?.IsAuthenticated == true)
+                                {
+                                    @if (User is ClaimsPrincipal principal)
+                                    {
+                                        var roleClaim = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+                                        if (roleClaim != null)
+                                        {
+                                            if (roleClaim.Value == "2")
+                                            {
+                                                @await Component.InvokeAsync("NavRolDos")
+                                            }
+                                            else if (roleClaim.Value == "3")
+                                            {
+                                                @await Component.InvokeAsync("NavAdministrador")
+                                            }
+                                        }
+                                    }
+                                }
+                            </ul>
+                            <partial name="_LoginPartial" />
+                        </div>
+                    </div>
+                </nav>
+            </header>
+        </div>
+    </div>
+    <div class="container">
+        <div class="container">
+            <div class="row d-flex">
+                <div class="col-md-2  text-light d-flex flex-column">
+                    <!-- Contenido de la columna lateral izquierda -->
+                    <!-- Anuncio 1 -->
+                    <div class="anuncio bg-white m-1 border border-dark">
+                        <div class="button">
+                            <img src="data:image/png;base64,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" width="39" height="39">
+                            <!-- Botón o acción -->
+                        </div>
+                        <img class="img-fluid" src="img/Electricista.jpg">
+                        <div class="tituloCurto">Luz Brillante</div>
+                        <div class="anuncio-footer">
+                            <span class="desc">Iluminamos tu vida con seguridad. Cableado, enchufes y sistemas eléctricos de alta calidad</span>
+                            <span class="link empresa">Luz Brillante Electricidad</span>
+                        </div>
+                    </div>
+                    <!-- Anuncio 2 -->
+                    <div id="B2_300x250" class="anuncio bg-white m-1 border border-dark">
+
+                        <div class="button">
+                            <!-- inicio de botão -->
+                            <img src="data:image/png;base64,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" width="39" height="39">
+                            <!-- fim de botão -->
+                        </div>
+
+                        <img border="0" class="img-fluid" src="img/Jardineria.jpg">
+                        <div class="tituloCurto">Verde Vivo</div>
+                        <div class="anuncio-footer">
+                            <span class="desc">Expertos en crear espacios verdes armoniosos. Ofrecemos diseño paisajístico, siembra, poda y riego eficiente.</span>
+                            <span class="link empresa">Verde Vivo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columna-central col-md-8">
+                    <!-- Contenido principal de la página -->
+                    @RenderBody()
+                </div>
+                <div class="col-md-2 text-light d-flex flex-column">
+                    <!-- Contenido de la columna lateral derecha -->
+                    <!-- Anuncio 3 -->
+
+                    <div id="B3_300x250" class="anuncio bg-white m-1 border border-dark">
+
+                        <div class="button">
+                            <!-- inicio de botão -->
+                            <img src="data:image/png;base64,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" width="39" height="39">
+                            <!-- fim de botão -->
+                        </div>
+
+                        <img border="0" class="img-fluid" src="img/Promeria.jpg">
+                        <div class="tituloCurto">AquaFlow</div>
+                        <div class="anuncio-footer">
+                            <span class="desc">Atascos, fugas o instalaciones nuevas: estamos aquí para ayudarte. Servicio rápido y confiable.</span>
+                            <span class="link empresa">
+                                AquaFlow Servicios Hidrosanitarios
+                            </span>
+                        </div>
+                    </div>
+                    <div class="espacio-entre-anuncios"></div>
+                    <!-- Anuncio 4 -->
+                    <div id="B4_300x250" class="anuncio bg-white m-1 border border-dark">
+
+                        <div class="button">
+                            <!-- inicio de botão -->
+                            <img src="data:image/png;base64,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" width="39" height="39">
+                            <!-- fim de botão -->
+                        </div>
+
+                        <img border="0" class="img-fluid" src="img/Contruccion.jpg">
+                        <div class="tituloCurto">Hogar Sólido</div>
+                        <div class="anuncio-footer">
+                            <span class="desc">Desde cimientos hasta acabados, construimos sueños. Ampliaciones, reformas y calidad garantizada.</span>
+                            <span class="link empresa">
+                                Constructora Hogar Sólido
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-muted">© 2024 AyudaHogar, Inc</p>
+
+            <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <img src="/img/Logo Multicolor SVG.svg" alt="AyudaHogar" width="40" height="32">
+            </a>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Inicio</a></li>
+                <li class="nav-item"><a href="/About" class="nav-link px-2 text-muted">Nosotros</a></li>
+            </ul>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

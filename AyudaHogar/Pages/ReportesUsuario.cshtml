@@ -1,0 +1,18 @@
+﻿@page
+@model AyudaHogar.Pages.ReportesUsuarioModel
+
+@{
+    ViewData["Title"] = "Reportar Servicio";
+}
+
+<h1>Reportar Servicio</h1>
+
+<h2>Reportando el servicio: @Model.ServicioNombre</h2>
+<form method="post">
+    <input type="hidden" name="ServId" value="@Model.ServId" />
+    <div class="form-group">
+        <label for="RepDescripcion">Descripción del Reporte</label>
+        <textarea id="RepDescripcion" name="RepDescripcion" rows="4" class="form-control"></textarea>
+    </div>
+    <input type="submit" value="Enviar Reporte" class="btn btn-primary" />
+</form>

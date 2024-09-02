@@ -1,0 +1,149 @@
+﻿@page
+@model AyudaHogar.Pages.ServicioDetalleModel
+@{
+    ViewData["Title"] = "Detalle del Servicio";
+}
+
+@if (Model.Servicio != null)
+{
+    <div class="container mt-5">
+        <h1 class="mb-4">@Model.Servicio.ServDetalle</h1>
+
+        <div class="row">
+            <!-- Información del proveedor -->
+            <div class="col-md-4">
+                <img src="@Model.FotoPerfilUrl" class="img-thumbnail mb-3" alt="Foto de Perfil">
+                <h3>Proveedor</h3>
+                <p><strong>Nombre:</strong> @Model.Servicio.Prov?.ProvNom</p>
+                <p><strong>Teléfono:</strong> @Model.Servicio.Prov?.ProvPhone</p>
+                <a asp-page="/DetalleProveedorUsuario" asp-route-id="@Model.Servicio.Prov?.ProvId" class="btn btn-primary">Ver Proveedor</a>
+            </div>
+
+            <!-- Detalles del servicio -->
+            <div class="col-md-8">
+                <h3>Detalles del Servicio</h3>
+                <p>@Model.Servicio.ServDetalle</p>
+                <!-- Aquí puedes añadir más detalles del servicio como categoría, precio, etc. -->
+                <!-- Botones de acción -->
+                <div class="mt-4">
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#horarioTrabajoModal">
+                        Ver Horario de Trabajo
+                    </button>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-page="/ReportesUsuario" asp-route-servId="@Model.Servicio.ServId" class="btn btn-danger">Reportar Servicio</a>
+                    }                
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="horarioTrabajoModal" tabindex="-1" aria-labelledby="horarioTrabajoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="horarioTrabajoModalLabel">Horario de Trabajo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @if (Model.Servicio.Bloquetiempos != null && Model.Servicio.Bloquetiempos.Any())
+                        {
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Día</th>
+                                        <th>Hora Inicio</th>
+                                        <th>Hora Fin</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var bloque in Model.Servicio.Bloquetiempos)
+                                    {
+                                        <tr>
+                                            <td>@Model.DiaSemana(bloque.BtDia.Value)</td>
+                                            <td>@bloque.BtHoraInicio.Value.ToString("hh\\:mm")</td>
+                                            <td>@bloque.BtHoraFin.Value.ToString("hh\\:mm")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <p>El proveedor no ha asignado un horario de trabajo.</p>
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de comentarios -->
+        <div class="mt-5">
+            <h2>Comentarios</h2>
+            <div>
+                <span class="badge bg-secondary">
+                    Promedio: @(
+                Model.Servicio.Comentarios.Any() ?
+                Model.Servicio.Comentarios.Average(c => c.ComPuntuacion ?? 0).ToString("0.0") :
+                "Sin calificaciones"
+                )
+                </span>
+            </div>
+            @if (Model.Servicio.Comentarios.Any())
+            {
+                foreach (var comentario in Model.Servicio.Comentarios)
+                {
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <p class="card-text">@comentario.ComDetalle</p>
+                            <footer class="blockquote-footer">Puntuación: @comentario.ComPuntuacion</footer>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No hay comentarios para este servicio.</p>
+            }
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <!-- Formulario para añadir un comentario -->
+                <div class="mt-4">
+                    <h4>Añadir un comentario</h4>
+                    <form method="post" asp-page-handler="AddComment">
+                        <input type="hidden" name="ServId" value="@Model.Servicio.ServId" />
+                        <div class="mb-3">
+                            <textarea class="form-control" name="CommentText" rows="3" placeholder="Escribe tu comentario aquí..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ComPuntuacion" class="form-label">Puntuación:</label>
+                            <select class="form-select" name="ComPuntuacion" id="ComPuntuacion">
+                                @for (int i = 1; i <= 10; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+                    </form>
+                </div>
+            }
+            else
+            {
+                <!-- Mensaje para usuarios no autenticados -->
+                <div class="alert alert-info" role="alert">
+                    <p>Debes <a href="/MicrosoftIdentity/Account/SignIn">iniciar sesión</a> para poder añadir comentarios.</p>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="container mt-5">
+        <p>El servicio solicitado no está disponible.</p>
+    </div>
+}

@@ -1,0 +1,43 @@
+﻿@page
+@model AyudaHogar.Pages.CrearCategoriaModel
+
+@{
+    ViewData["Title"] = "Crear Categoría";
+}
+
+<h1>Crear nueva Categoría de Servicios</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Categoriadeservicio.CatNom" class="control-label">Nombre de la Categoría</label>
+                <input asp-for="Categoriadeservicio.CatNom" class="form-control" />
+                <span asp-validation-for="Categoriadeservicio.CatNom" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Categoriadeservicio.CatDescripcion" class="control-label">Descripción de la Categoría</label>
+                <input asp-for="Categoriadeservicio.CatDescripcion" class="form-control" />
+                <span asp-validation-for="Categoriadeservicio.CatDescripcion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./CategoriasServicio">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

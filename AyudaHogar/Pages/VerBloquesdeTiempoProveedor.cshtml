@@ -1,0 +1,85 @@
+﻿@page
+@model AyudaHogar.Pages.VerBloquesdeTiempoProveedorModel
+
+@{
+    ViewData["Title"] = "Horario del Proveedor";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!-- Botón para agregar nuevo bloque de tiempo -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bloqueTiempoModal">
+    Agregar Bloque de Tiempo
+</button>
+
+<!-- Tabla de horario -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Día</th>
+            <th>Bloques de Tiempo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int dia = 1; dia <= 7; dia++)
+        {
+            <tr>
+                <td>@Model.DiaSemana(dia)</td>
+                <td>
+                    @foreach (var bloque in Model.Bloquetiempo.Where(b => b.BtDia == dia))
+                    {
+                        <div>@bloque.BtHoraInicio:hh\:mm - @bloque.BtHoraFin:hh\:mm</div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal para agregar/editar bloques de tiempo -->
+<div class="modal fade" id="bloqueTiempoModal" tabindex="-1" aria-labelledby="bloqueTiempoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bloqueTiempoModalLabel">Agregar/Editar Bloque de Tiempo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <form id="bloqueTiempoForm" method="post">
+                <input type="hidden" name="ServId" value="@Model.id" />
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="btDia">Día</label>
+                        <select class="form-control" id="btDia" name="btDia">
+                            <option value="1">Lunes</option>
+                            <option value="2">Martes</option>
+                            <option value="3">Miércoles</option>
+                            <option value="4">Jueves</option>
+                            <option value="5">Viernes</option>
+                            <option value="6">Sábado</option>
+                            <option value="7">Domingo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="btHoraInicio">Hora de Inicio</label>
+                        <input type="time" class="form-control" id="btHoraInicio" name="btHoraInicio">
+                    </div>
+                    <div class="form-group">
+                        <label for="btHoraFin">Hora de Fin</label>
+                        <input type="time" class="form-control" id="btHoraFin" name="btHoraFin">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Script para manejar la lógica del formulario
+    </script>
+}

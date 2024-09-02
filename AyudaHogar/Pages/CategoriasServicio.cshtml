@@ -1,0 +1,53 @@
+﻿@page
+@model AyudaHogar.Pages.CategoriasServicioModel
+
+@{
+    ViewData["Title"] = "CategoriasServicio";
+}
+
+<h1 class="mb-4">Categorías de Servicio</h1>
+
+<p>
+    <a asp-page="/CrearCategoria" class="btn btn-success">Crear Nueva</a>
+</p>
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoriadeservicio[0].CatNom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoriadeservicio[0].CatDescripcion)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Categoriadeservicio)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CatNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CatDescripcion)
+                </td>
+                <td>
+                    <a asp-page="./EditarCategoria" asp-route-id="@item.CatId" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="javascript:void(0);" onclick="confirmDelete('@item.CatNom', '@item.CatId')" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script>
+        function confirmDelete(catNom, catId) {
+            var confirmar = confirm("¿Estás seguro que deseas eliminar la categoría \"" + catNom + "\"?");
+            if (confirmar) {
+                // Redirige al método OnGetEliminarAsync en el modelo de la página con el ID de la categoría
+                window.location.href = '?handler=Eliminar&catId=' + catId;
+            }
+        }
+    </script>
+}

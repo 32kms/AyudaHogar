@@ -1,0 +1,41 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Título del Índice";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center">Encuentra y Contrata Proveedores de Servicios del Hogar en un Solo Lugar</h1>
+    <p class="text-center mt-4">En la vida moderna, el tiempo es un recurso cada vez más valioso. AyudaHogar es la solución a este problema, conectando a usuarios con proveedores de servicios del hogar de manera rápida, sencilla y transparente.</p>
+
+    <!-- Carrusel Bootstrap -->
+    <div id="carouselServices" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/img/car-electrisista.jpg" class="d-block w-100" alt="Servicio de Electricidad">
+            </div>
+            <div class="carousel-item">
+                <img src="~/img/car-fontaneria.jpg" class="d-block w-100" alt="Servicio de Fontanería">
+            </div>
+            <div class="carousel-item">
+                <img src="~/img/car-jardineria.jpg" class="d-block w-100" alt="Servicio de Jardinería">
+            </div>
+            <div class="carousel-item">
+                <img src="~/img/car-carpinteria.jpg" class="d-block w-100" alt="Servicio de Carpintería">
+            </div>
+            <!-- Añade más elementos al carrusel según sea necesario -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselServices" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselServices" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
+    <div class="text-center mt-5">
+        <p>Facilitamos la conexión entre proveedores y clientes, ofreciendo una experiencia confiable y eficiente para satisfacer todas tus necesidades del hogar. Bienvenido a AyudaHogar, donde encontrarás todo lo que necesitas para mantener tu hogar en perfecto estado.</p>
+    </div>
+</div>

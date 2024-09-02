@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "identityapp1": {
+      "connectionInfo": "Registro de la aplicación: AyudaHogar, Inquilino: Ayuda Hogar (ayudahogar2.onmicrosoft.com - AAD B2C)",
+      "type": "identityapp.default"
+    }
+  }
+}

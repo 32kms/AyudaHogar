@@ -1,0 +1,54 @@
+﻿@page
+@model AyudaHogar.Pages.SolicitarProveedorModel
+
+@{
+    ViewData["Title"] = "Solicitar Proveedor";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Solicitud para ser proveedor de servicio</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="SolicitudDescripcion" class="form-label">Descripción de la solicitud:</label>
+                    <textarea id="SolicitudDescripcion" name="SolicitudDescripcion" class="form-control"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="NombreEmpresa" class="form-label">Nombre de la empresa:</label>
+                    <input type="text" id="NombreEmpresa" name="Proveedordeservicio.ProvNom" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="TelefonoEmpresa" class="form-label">Teléfono de la empresa:</label>
+                    <input type="text" id="TelefonoEmpresa" name="Proveedordeservicio.ProvPhone" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="RutEmpresa" class="form-label">Número de identificación fiscal de la empresa (RUT):</label>
+                    <input type="text" id="RutEmpresa" name="Proveedordeservicio.ProvRut" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="UploadedFile" class="form-label">Fotografía de identificación:</label>
+                    <input type="file" id="UploadedFile" name="UploadedFile" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="UploadedFile" class="form-label">Foto de carnet:</label>
+                    <input type="file" id="UploadedFile" name="UploadedFile" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

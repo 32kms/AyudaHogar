@@ -1,0 +1,72 @@
+﻿@page
+@model AyudaHogar.Pages.EditarMiServicioModel
+
+@{
+    ViewData["Title"] = "EditarMiServicio";
+}
+
+<h1>EditarMiServicio</h1>
+
+<h4>Servicio</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <input type="hidden" asp-for="Servicio.ServId" />
+
+            <div class="form-group">
+                <label asp-for="Servicio.Comuna.RegionId" class="control-label">Región</label>
+                <select asp-for="Servicio.Comuna.RegionId" class="form-control" id="RegionSelect" asp-items="ViewBag.RegId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Servicio.ComunaId" class="control-label">Comuna</label>
+                <select asp-for="Servicio.ComunaId" class="form-control" id="ComunaSelect" asp-items="ViewBag.ComunaId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Servicio.CatId" class="control-label">Categoría</label>
+                <select asp-for="Servicio.CatId" class="form-control" asp-items="ViewBag.CatId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Servicio.ServDetalle" class="control-label"></label>
+                <textarea asp-for="Servicio.ServDetalle" class="form-control"></textarea>
+                <span asp-validation-for="Servicio.ServDetalle" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('RegionSelect').addEventListener('change', function () {
+                var regionId = this.value;
+                fetch(`/EditarMiServicio?handler=ComunasPorRegion&regionId=${regionId}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        var comunaSelect = document.getElementById('ComunaSelect');
+                        comunaSelect.innerHTML = '<option value="">Seleccione una Comuna</option>';
+                        data.forEach(comuna => {
+                            var option = new Option(comuna.comunaNombre, comuna.comunaId);
+                            comunaSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching data: ', error));
+            });
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

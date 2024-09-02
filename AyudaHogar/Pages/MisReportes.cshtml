@@ -1,0 +1,68 @@
+﻿@page
+@model AyudaHogar.Pages.MisReportesModel
+
+@{
+    ViewData["Title"] = "Mis Reportes";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Mis Reportes</h1>
+
+    @if (Model.Report.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Servicio</th>
+                    <th>Proveedor de Servicio</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Report)
+                {
+                    <tr>
+                        <!-- Añadir esta línea para iniciar correctamente cada fila de la tabla -->
+                        <td>@Html.DisplayFor(modelItem => item.RepDescripcion)</td>
+                        <td>
+                            @{
+                                var estadoClase = "text-secondary"; // Clase por defecto para estados no especificados o desconocidos
+                                var estadoNombre = "No Especificado"; // Mensaje por defecto si el estado no está especificado
+
+                                if (item.ErId.HasValue) // Verifica si ErId tiene un valor
+                                {
+                                    switch (item.ErId.Value)
+                                    {
+                                        case 1:
+                                            estadoClase = "text-danger"; // Rojo para rechazado
+                                            estadoNombre = item.Er?.ErNombre ?? "Rechazado"; // Usa el nombre del estado si está disponible, sino "Rechazado"
+                                            break;
+                                        case 2:
+                                            estadoClase = "text-warning"; // Amarillo para en proceso
+                                            estadoNombre = item.Er?.ErNombre ?? "En Proceso"; // Usa el nombre del estado si está disponible, sino "En Proceso"
+                                            break;
+                                        default:
+                                            estadoClase = "text-success"; // Verde para otros estados
+                                            estadoNombre = item.Er?.ErNombre ?? "Aceptado/Completado"; // Usa el nombre del estado si está disponible, sino "Aceptado/Completado"
+                                            break;
+                                    }
+                                }
+                            }
+                            <span class="@estadoClase">@estadoNombre</span>
+                        </td>
+                        <td>@(item.Serv?.ServDetalle ?? "Especificado")</td>
+                        <td>@(item.Serv?.Prov?.ProvNom ?? "Especificado")</td>
+
+                    </tr> <!-- Cerrar correctamente cada fila de la tabla -->
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            No hay reportes disponibles.
+        </div>
+    }
+</div>

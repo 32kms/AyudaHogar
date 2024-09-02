@@ -1,0 +1,34 @@
+﻿@page
+@model AyudaHogar.Pages.ListaDeSolicitudesCategoriaModel
+
+@{
+    ViewData["Title"] = "Lista de Solicitudes de Categoría";
+}
+
+<h1 class="mb-3">Lista de Solicitudes para nuevas Categoría</h1>
+
+<div class="mb-3">
+    <a asp-page="/CrearCategoria" class="btn btn-primary">Crear Nueva</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Descripción de Solicitud</th>
+            <th>Nombre de Usuario</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Solicitudnuevacategorium)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SncDescripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usu.UsuNom)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
