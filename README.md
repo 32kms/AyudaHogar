@@ -26,11 +26,28 @@ AyudaHogar es una plataforma que facilita la gestión de servicios para el hogar
 - **Duración**: Mayo 2024 - Julio 2024
 
 ### Tecnologías Utilizadas
-- **Backend**: ASP.NET Core con .NET 8
-- **Frontend**: HTML, CSS y Bootstrap
-- **Servicios en la Nube**: Azure (Azure Services, Azure AD B2C, Azure App Service, Azure Blob Storage, Azure Storage Account, Azure SQL Database, Azure SQL Server)
-- **Base de Datos**: Azure SQL Server
-- **Analítica**: Google Analytics
+<table>
+  <tr>
+    <th>Backend</th>
+    <td>ASP.NET Core con .NET 8</td>
+  </tr>
+  <tr>
+    <th>Frontend</th>
+    <td>HTML, CSS y Bootstrap</td>
+  </tr>
+  <tr>
+    <th>Servicios en la Nube</th>
+    <td>Azure (Azure Services, Azure AD B2C, Azure App Service, Azure Blob Storage, Azure Storage Account, Azure SQL Database, Azure SQL Server)</td>
+  </tr>
+  <tr>
+    <th>Base de Datos</th>
+    <td>Azure SQL Server</td>
+  </tr>
+  <tr>
+    <th>Analítica</th>
+    <td>Google Analytics</td>
+  </tr>
+</table>
 
 ### Descripción del Proyecto
 Diseñé y desarrollé una plataforma web para la gestión de servicios para el hogar en Chile. Utilicé servicios de Azure y Google Analytics para recopilar y analizar datos, optimizando la selección de servicios y estableciendo criterios administrativos claros para proveedores.
@@ -50,10 +67,14 @@ Diseñé y desarrollé una plataforma web para la gestión de servicios para el 
 
 ## Tecnologías
 
-- ASP.NET Core
-- Azure
-- jQuery
-- Bootstrap
+<table>
+  <tr>
+    <td>ASP.NET Core</td>
+    <td>Azure</td>
+    <td>jQuery</td>
+    <td>Bootstrap</td>
+  </tr>
+</table>
 
 ## Instalación
 
