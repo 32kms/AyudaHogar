@@ -15,8 +15,9 @@ AyudaHogar es una plataforma que facilita la gestión de servicios para el hogar
 
 ### Tecnologías Utilizadas
 - **Backend**: ASP.NET Core con .NET 8
-- **Servicios en la Nube**: Azure (Azure Services, Azure AD B2C, Azure App Service, Azure Blob Storage, Azure Storage Account)
-- **Base de Datos**: Entity Framework Core
+- **Frontend**: HTML, CSS y Bootstrap
+- **Servicios en la Nube**: Azure (Azure Services, Azure AD B2C, Azure App Service, Azure Blob Storage, Azure Storage Account, Azure SQL Database, Azure SQL Server)
+- **Base de Datos**: Azure SQL Server
 - **Analítica**: Google Analytics
 
 ### Descripción del Proyecto
