@@ -1,6 +1,18 @@
 # AyudaHogar
 
+![AyudaHogar Screenshot](link-a-tu-imagen.png)
+
 Plataforma web para la gestión de servicios para el hogar en Chile, desarrollada con ASP.NET Core y Azure.
+
+## Tabla de Contenidos
+1. [Descripción](#descripción)
+2. [Proyecto de Seminario de Grado](#proyecto-de-seminario-de-grado)
+3. [Tecnologías Utilizadas](#tecnologías-utilizadas)
+4. [Logros](#logros)
+5. [Características](#características)
+6. [Instalación](#instalación)
+7. [Contribución](#contribución)
+8. [Licencia](#licencia)
 
 ## Descripción
 
