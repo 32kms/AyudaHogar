@@ -1,107 +1,39 @@
-# AyudaHogar
-
-![AyudaHogar Screenshot](link-a-tu-imagen.png)
-
-Plataforma web para la gestión de servicios para el hogar en Chile, desarrollada con ASP.NET Core y Azure.
-
-## Tabla de Contenidos
-1. [Descripción](#descripción)
-2. [Proyecto de Seminario de Grado](#proyecto-de-seminario-de-grado)
-3. [Tecnologías Utilizadas](#tecnologías-utilizadas)
-4. [Logros](#logros)
-5. [Características](#características)
-6. [Instalación](#instalación)
-7. [Contribución](#contribución)
-8. [Licencia](#licencia)
+# AyudaHogar: Encuentra servicios para el hogar de confianza en Chile
 
 ## Descripción
 
-AyudaHogar es una plataforma que facilita la gestión de servicios para el hogar, permitiendo a los usuarios contratar y administrar servicios como limpieza, reparación, entre otros. La plataforma está desarrollada utilizando ASP.NET Core para el backend y Azure para el hosting.
+AyudaHogar es una plataforma web que facilita la gestión de servicios para el hogar en Chile, conectando a usuarios que necesitan estos servicios con proveedores calificados y confiables. Encuentra fácilmente profesionales para limpieza, reparaciones, jardinería y mucho más. Lee reseñas de otros usuarios, compara servicios y programa citas según tu conveniencia.
 
-## Proyecto de Seminario de Grado
+## Características Principales
 
-### Información General
-- **Proyecto**: "Desarrollo de una Plataforma Web para Gestión de Servicios para el Hogar"
-- **Institución**: Inacap
-- **Duración**: Mayo 2024 - Julio 2024
+*   **Búsqueda sencilla:** Encuentra proveedores por categoría de servicio (limpieza, reparación, etc.) y ubicación (comuna).
+*   **Perfiles detallados de proveedores:** Accede a información completa sobre cada proveedor, incluyendo su experiencia, habilidades, fotos y reseñas de clientes anteriores.
+*   **Sistema de reseñas y calificaciones:** Toma decisiones informadas basadas en las experiencias de otros usuarios. Califica a los proveedores y deja comentarios sobre los servicios recibidos.
+*   **Gestión de citas:** Programa citas con proveedores según su disponibilidad horaria, simplificando la coordinación.
+*   **Autenticación segura:**  Inicia sesión de forma segura con tu cuenta de Google para proteger tu información personal.
+*   **Interfaz amigable:**  Nuestro diseño intuitivo facilita la navegación y la búsqueda de servicios.
 
-### Tecnologías Utilizadas
-<table>
-  <tr>
-    <th>Backend</th>
-    <td>ASP.NET Core con .NET 8</td>
-  </tr>
-  <tr>
-    <th>Frontend</th>
-    <td>HTML, CSS y Bootstrap</td>
-  </tr>
-  <tr>
-    <th>Servicios en la Nube</th>
-    <td>Azure (Azure Services, Azure AD B2C, Azure App Service, Azure Blob Storage, Azure Storage Account, Azure SQL Database, Azure SQL Server)</td>
-  </tr>
-  <tr>
-    <th>Base de Datos</th>
-    <td>Azure SQL Server</td>
-  </tr>
-  <tr>
-    <th>Analítica</th>
-    <td>Google Analytics</td>
-  </tr>
-</table>
+## Tecnologías Utilizadas
 
-### Descripción del Proyecto
-Diseñé y desarrollé una plataforma web para la gestión de servicios para el hogar en Chile. Utilicé servicios de Azure y Google Analytics para recopilar y analizar datos, optimizando la selección de servicios y estableciendo criterios administrativos claros para proveedores.
-
-### Logros
-- Desarrollé un prototipo funcional que mejoró la eficiencia en la búsqueda de servicios en un solo lugar.
-- Implementé tecnologías avanzadas para asegurar la escalabilidad y seguridad de la plataforma.
-- Adapté dinámicamente la plataforma a las necesidades del mercado permitiendo a los usuarios solicitar nuevas categorías de servicios.
-- Establecí criterios administrativos para garantizar la calidad y confiabilidad de los proveedores.
-
-## Características
-
-- Gestión de usuarios y autenticación
-- Búsqueda y contratación de servicios para el hogar
-- Administración de servicios contratados
-- Notificaciones y alertas
-
-## Tecnologías
-
-<table>
-  <tr>
-    <td>ASP.NET Core</td>
-    <td>Azure</td>
-    <td>jQuery</td>
-    <td>Bootstrap</td>
-  </tr>
-</table>
+*   **Backend:** ASP.NET Core con .NET 8
+*   **Frontend:** HTML, CSS y Bootstrap
+*   **Base de datos:** Azure SQL Server
+*   **Autenticación:** Azure Active Directory B2C
+*   **Almacenamiento:** Azure Blob Storage (para fotos de perfil y reseñas)
+*   **Analítica:** Google Analytics
 
 ## Instalación
 
-1. Clona el repositorio:
-    ```bash
-    git clone https://github.com/32kms/AyudaHogar.git
-    ```
-2. Navega al directorio del proyecto:
-    ```bash
-    cd AyudaHogar
-    ```
-3. Restaura los paquetes de NuGet:
-    ```bash
-    dotnet restore
-    ```
-4. Configura la conexión a la base de datos en `appsettings.json`.
-5. Ejecuta las migraciones de la base de datos:
-    ```bash
-    dotnet ef database update
-    ```
-6. **Nota Importante**: Los recursos de Azure no funcionarán ya que deben configurarse con sus propias cuentas.
-7. Inicia la aplicación:
-    ```bash
-    dotnet run
-    ```
+**Nota:** La plataforma está alojada en Azure, por lo que no es necesaria una instalación local. Sin embargo, si deseas ejecutar el código localmente (ten en cuenta que algunas funciones de Azure podrían no estar disponibles), sigue estos pasos:
 
-## Contribución
+1.  Clona el repositorio:  `git clone https://github.com/32kms/AyudaHogar.git`
+2.  Navega al directorio del proyecto:  `cd AyudaHogar`
+3.  Restaura los paquetes de NuGet:  `dotnet restore`
+4.  Configura la conexión a la base de datos en  `appsettings.json`.
+5.  Ejecuta las migraciones de la base de datos:  `dotnet ef database update`
+6.  Inicia la aplicación:  `dotnet run`
+
+## Cómo Contribuir
 
 Si deseas contribuir a este proyecto, por favor sigue los siguientes pasos:
 
@@ -113,4 +45,11 @@ Si deseas contribuir a este proyecto, por favor sigue los siguientes pasos:
 
 ## Licencia
 
-Este proyecto está bajo la Licencia MIT. Puedes ver el archivo de [licencia](https://github.com/32kms/AyudaHogar/blob/main/LICENSE.md) para más detalles.
+Este proyecto está bajo la Licencia MIT.
+
+## Agradecimientos
+
+*   A mi profesor guía, Pablo Cerda, por su apoyo y orientación durante el desarrollo de este proyecto.
+
+**¡Gracias por visitar el repositorio de AyudaHogar!**
+```
