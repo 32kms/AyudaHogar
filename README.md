@@ -4,7 +4,7 @@
 
 **¡Conectamos hogares con proveedores de servicios confiables!**
 
-![AyudaHogar Logo](link-a-la-imagen-del-logo)
+![AyudaHogar Logo](AyudaHogar/wwwroot/img/Logo Multicolor SVG.svg)
 
 </div>
 
