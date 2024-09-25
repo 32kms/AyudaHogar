@@ -4,8 +4,15 @@
 
 **¡Conectamos hogares con proveedores de servicios confiables!**
 
-![AyudaHogar Logo](AyudaHogar/wwwroot/img/Logo Multicolor SVG.svg)
-
+![AyudaHogar Logo](AyudaHogar/wwwroot/img/banner.png)
+[![Lenguaje C#](https://img.shields.io/badge/C%23-239120?style=flat&logo=c-sharp&logoColor=white&color=%23572ed6)](https://docs.microsoft.com/es-es/dotnet/csharp/) 
+[![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=flat)](https://developer.mozilla.org/es/docs/Web/HTML) 
+[![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=flat)](https://developer.mozilla.com/es/docs/Web/CSS) 
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.com/es/docs/Web/JavaScript) 
+[![.NET Badge](https://img.shields.io/badge/.NET-512BD4?logo=dotnet&logoColor=fff&style=flat)](https://dotnet.microsoft.com/es-es/apps/aspnet) 
+[![Microsoft Azure](https://img.shields.io/badge/Microsoft%20Azure-0078D6?style=flat&logo=microsoft-azure&logoColor=white&color=2596be)](https://azure.microsoft.com/es-es/) 
+[![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-green.svg)](https://opensource.org/licenses/MIT) 
+[![Estado-Abandonado](https://img.shields.io/badge/Estado-Abandonado-red)]()
 </div>
 
 ## Descripción
@@ -45,9 +52,3 @@ Este proyecto está bajo la Licencia MIT.
 <br/>
 
 **¡Gracias por visitar el repositorio de AyudaHogar!**
-
----
-
-## Badges
-
-[![Lenguaje C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)](https://docs.microsoft.com/es-es/dotnet/csharp/) [![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/es/docs/Web/HTML) [![CSS](https://img.shields.io/badge/CSS-239120?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.com/es/docs/Web/CSS) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.com/es/docs/Web/JavaScript) [![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-5C2D91?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/es-es/apps/aspnet) [![Microsoft Azure](https://img.shields.io/badge/Microsoft%20Azure-0078D6?style=for-the-badge&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com/es-es/) [![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-green.svg)](https://opensource.org/licenses/MIT) [![Estado-Abandonado](https://img.shields.io/badge/Estado-Abandonado-red)]()
