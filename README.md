@@ -19,7 +19,8 @@
   </div>
   <div style="margin-left: auto;">
 
-  [![Estado-Abandonado](https://img.shields.io/badge/Estado-Abandonado-red)]()
+  [![Status-Abandoned](https://img.shields.io/badge/Status-Abandoned-red)]()
+
   </div>
 </div>
 
